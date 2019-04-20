@@ -9,12 +9,14 @@ class GameCanvas extends Component {
     this.state = {
       selectedDiamondCell: [],
       selectedCell: [],
-      generatedCells: []
+      generatedCells: [],
+      isModalOpen: false
     };
 
     this.generateGameBoard = this.generateGameBoard.bind(this);
     this.storeSelectedCell = this.storeSelectedCell.bind(this);
     this.getComputedScore = this.getComputedScore.bind(this);
+    this.onClose = this.onClose.bind(this);
   }
 
   componentWillMount() {
@@ -57,7 +59,9 @@ class GameCanvas extends Component {
     this.setState(
       {
         selectedCell,
-        selectedDiamondCell
+        selectedDiamondCell,
+        isModalOpen:
+          this.state.selectedDiamondCell.length === this.props.noOfrow
       },
       () => {
         this.props.getScore(this.getComputedScore());
@@ -73,6 +77,17 @@ class GameCanvas extends Component {
       diamondLeft: diamondLeft,
       yourScore: lengthOfBoard - selected
     };
+  }
+
+  onClose() {
+    this.setState(
+      {
+        isModalOpen: false
+      },
+      () => {
+        this.props.refreshGameBoard(2);
+      }
+    );
   }
 
   render() {
@@ -91,10 +106,7 @@ class GameCanvas extends Component {
             );
           })}
         </ul>
-        <Modal
-          isOpen={this.state.selectedDiamondCell.length === this.props.noOfrow}
-          onClose={this.onClose}
-        >
+        <Modal isOpen={this.state.isModalOpen} onClose={this.onClose}>
           <div className="row">
             <img
               className="award"
