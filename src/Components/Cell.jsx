@@ -12,13 +12,19 @@ class Cell extends Component {
   }
 
   openCell() {
-    const { position, selectedCell } = this.props;
+    const {
+      position,
+      selectedCell,
+      diamondStatus,
+      suggestedAngle,
+      storeSelectedCell
+    } = this.props;
     if (selectedCell.indexOf(position) === -1) {
-      const isItDiamond = this.props.diamondStatus.isDiamond ? "diamond" : "";
+      const isItDiamond = diamondStatus.isDiamond ? "diamond" : suggestedAngle;
       this.setState({
         cellStatus: isItDiamond
       });
-      this.props.storeSelectedCell(position, isItDiamond);
+      storeSelectedCell(position, isItDiamond);
     }
   }
 

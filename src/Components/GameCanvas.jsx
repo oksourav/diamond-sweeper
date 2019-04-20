@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Cell from "../Components/Cell";
 import Modal from "../Components/Modal";
 import award from "../images/award.svg";
+import { getRowNumber, closestValue } from "../Utilty/UtilityFunctions";
 
 class GameCanvas extends Component {
   constructor(props) {
@@ -10,9 +11,12 @@ class GameCanvas extends Component {
       selectedDiamondCell: [],
       selectedCell: [],
       generatedCells: [],
-      isModalOpen: false
+      isModalOpen: false,
+      diamondHint: [],
+      suggestDiamondHint: ""
     };
 
+    this.suggestDiamondHint = this.suggestDiamondHint.bind(this);
     this.generateGameBoard = this.generateGameBoard.bind(this);
     this.storeSelectedCell = this.storeSelectedCell.bind(this);
     this.getComputedScore = this.getComputedScore.bind(this);
@@ -56,6 +60,12 @@ class GameCanvas extends Component {
     if (isDiamondCell === "diamond") {
       selectedDiamondCell.push(cellNo);
     }
+    // delete diamond hint
+    let diamondHint = this.state.diamondHint;
+    let diamondHintPosition = diamondHint.indexOf(cellNo);
+    if (diamondHintPosition !== -1) {
+      diamondHint.splice(diamondHintPosition, 1);
+    }
     this.setState(
       {
         selectedCell,
@@ -65,6 +75,7 @@ class GameCanvas extends Component {
       },
       () => {
         this.props.getScore(this.getComputedScore());
+        this.suggestDiamondHint(cellNo);
       }
     );
   }
@@ -90,6 +101,23 @@ class GameCanvas extends Component {
     );
   }
 
+  suggestDiamondHint(cellNo) {
+    let hintArray = this.state.diamondHint;
+    let nearestDiamond = closestValue(hintArray, cellNo);
+    // Get Row Number of clicked Cell
+    let rowNumber = getRowNumber(cellNo, this.props.noOfrow);
+    let hintRowNumber = getRowNumber(nearestDiamond, this.props.noOfrow);
+    let hintAngle = "";
+    if (rowNumber === hintRowNumber) {
+      hintAngle = cellNo > nearestDiamond ? "arrow-left" : "arrow-right";
+    } else {
+      hintAngle = rowNumber > hintRowNumber ? "arrow-up" : "arrow-down";
+    }
+    this.setState({
+      suggestDiamondHint: hintAngle
+    });
+  }
+
   render() {
     return (
       <div className="col-md-8 game-canvas">
@@ -102,6 +130,7 @@ class GameCanvas extends Component {
                 diamondStatus={arr}
                 selectedCell={this.state.selectedCell}
                 storeSelectedCell={this.storeSelectedCell}
+                suggestedAngle={this.state.suggestDiamondHint}
               />
             );
           })}
