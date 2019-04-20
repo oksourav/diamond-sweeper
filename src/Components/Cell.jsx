@@ -33,7 +33,9 @@ class Cell extends Component {
       <li
         className={`cell fa fa-${this.state.cellStatus} fa-3x`}
         onClick={event => this.openCell()}
-      />
+      >
+        {this.state.cellStatus ? "" : this.props.children}
+      </li>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Cell from "../Components/Cell";
+import Hint from "../Components/Hint";
 import Modal from "../Components/Modal";
 import award from "../images/award.svg";
 import { getRowNumber, closestValue } from "../Utilty/UtilityFunctions";
@@ -13,7 +14,10 @@ class GameCanvas extends Component {
       generatedCells: [],
       isModalOpen: false,
       diamondHint: [],
-      suggestDiamondHint: ""
+      suggestDiamondHint: {
+        cellNo: "",
+        hintAngle: ""
+      }
     };
 
     this.suggestDiamondHint = this.suggestDiamondHint.bind(this);
@@ -114,11 +118,15 @@ class GameCanvas extends Component {
       hintAngle = rowNumber > hintRowNumber ? "arrow-up" : "arrow-down";
     }
     this.setState({
-      suggestDiamondHint: hintAngle
+      suggestDiamondHint: {
+        cellNo,
+        hintAngle
+      }
     });
   }
 
   render() {
+    const { cellNo, hintAngle } = this.state.suggestDiamondHint;
     return (
       <div className="col-md-8 game-canvas">
         <ul className="game-container">
@@ -130,8 +138,9 @@ class GameCanvas extends Component {
                 diamondStatus={arr}
                 selectedCell={this.state.selectedCell}
                 storeSelectedCell={this.storeSelectedCell}
-                suggestedAngle={this.state.suggestDiamondHint}
-              />
+              >
+                <Hint symbol={cellNo === index ? hintAngle : ""} />
+              </Cell>
             );
           })}
         </ul>

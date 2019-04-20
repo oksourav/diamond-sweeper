@@ -76,10 +76,10 @@ class App extends Component {
                     )}
                     <button
                       type="button"
-                      class="btn btn-primary btn-lg"
+                      className="btn btn-primary btn-lg"
                       onClick={event => this.startGame()}
                     >
-                      <i class="fa fa-play-circle" aria-hidden="true" />
+                      <i className="fa fa-play-circle" aria-hidden="true" />
                       &nbsp; Start Game
                     </button>
                   </div>

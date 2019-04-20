@@ -62,7 +62,7 @@ const LeftSide = props => {
         </blockquote>
       </div>
       <footer>
-        Made with <span class="fa fa-heart love" /> by{" "}
+        Made with <span className="fa fa-heart love" /> by{" "}
         <a href="https://twitter.com/souravdev2019">@souravdev2019</a>
       </footer>
     </div>
