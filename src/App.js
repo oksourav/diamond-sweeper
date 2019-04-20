@@ -12,7 +12,7 @@ class App extends Component {
         <div className="container-fluid">
           <div className="row">
             <LeftSide />
-            <GameCanvas />
+            <GameCanvas noOfrow={8} />
           </div>
         </div>
       </Fragment>

@@ -119,4 +119,13 @@ blockquote {
   line-height: 65px;
   background: #cddc39;
   border: 2px solid rgb(145, 155, 11);
+  transition: all 0.5s;
+}
+
+.cell:hover {
+  transform: scale(1.2);
+}
+
+.cell:active {
+  cursor: zoom-in;
 }
