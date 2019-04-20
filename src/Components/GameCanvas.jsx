@@ -12,6 +12,7 @@ class GameCanvas extends Component {
 
     this.generateGameBoard = this.generateGameBoard.bind(this);
     this.storeSelectedCell = this.storeSelectedCell.bind(this);
+    this.getComputedScore = this.getComputedScore.bind(this);
   }
 
   componentWillMount() {
@@ -51,10 +52,25 @@ class GameCanvas extends Component {
     if (isDiamondCell === "diamond") {
       selectedDiamondCell.push(cellNo);
     }
-    this.setState({
-      selectedCell,
-      selectedDiamondCell
-    });
+    this.setState(
+      {
+        selectedCell,
+        selectedDiamondCell
+      },
+      () => {
+        this.props.getScore(this.getComputedScore());
+      }
+    );
+  }
+
+  getComputedScore() {
+    let diamondLeft = this.state.selectedDiamondCell.length;
+    let selected = this.state.selectedCell.length;
+    let lengthOfBoard = Math.pow(this.props.noOfrow, 2);
+    return {
+      diamondLeft: diamondLeft,
+      yourScore: lengthOfBoard - selected
+    };
   }
 
   render() {

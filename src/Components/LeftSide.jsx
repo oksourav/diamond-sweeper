@@ -18,6 +18,37 @@ class LeftSide extends Component {
           <i className="fa fa-star opacity-medium" />
         </h3>
         <div className="rules-container">
+          <h4 className="rules-heading">Score Card</h4>
+          <blockquote>
+            <div className="diamonds-left-container">
+              <label className="score-label">
+                Diamonds Left{" "}
+                <span className="badge badge-primary">
+                  {this.props.showScore.diamondLeft}
+                </span>
+              </label>
+              <div>
+                <progress
+                  value={this.props.showScore.diamondLeft}
+                  max={this.props.noOfrow}
+                  min={0}
+                />
+              </div>
+              <label>
+                Your Score{" "}
+                <span className="badge badge-primary">
+                  {this.props.showScore.yourScore}
+                </span>
+              </label>
+              <div>
+                <progress
+                  value={this.props.showScore.yourScore}
+                  min={0}
+                  max={Math.pow(this.props.noOfrow, 2)}
+                />
+              </div>
+            </div>
+          </blockquote>
           <h4 className="rules-heading">Game Rules</h4>
           <blockquote>
             <ul className="rules-content">

@@ -98,6 +98,14 @@ blockquote {
   color: red;
 }
 
+.score-label {
+  margin: 5px 0;
+}
+
+progress {
+  width: 100%;
+}
+
 /* Game Board */
 .game-canvas {
   margin: 20px 0;
@@ -123,7 +131,7 @@ blockquote {
 }
 
 .cell:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .cell:active {
