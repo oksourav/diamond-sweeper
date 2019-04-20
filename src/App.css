@@ -1,0 +1,26 @@
+/* Header */
+.main-header {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  background: #f98d3b;
+  box-shadow: 3px 3px 1px #ea8b02;
+}
+
+.user {
+  height: 40px;
+  margin: 0 20px;
+}
+
+.user-avatar {
+  background: #fff;
+  margin: 2px;
+  border-radius: 50%;
+}
+
+.user-name {
+  margin: 0 4px;
+  color: #fff;
+}
