@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Cell extends Component {
   constructor(props) {
@@ -16,11 +17,10 @@ class Cell extends Component {
       position,
       selectedCell,
       diamondStatus,
-      suggestedAngle,
       storeSelectedCell
     } = this.props;
     if (selectedCell.indexOf(position) === -1) {
-      const isItDiamond = diamondStatus.isDiamond ? "diamond" : suggestedAngle;
+      const isItDiamond = diamondStatus.isDiamond ? "diamond" : "";
       this.setState({
         cellStatus: isItDiamond
       });
@@ -39,5 +39,12 @@ class Cell extends Component {
     );
   }
 }
+
+Cell.propTypes = {
+  position: PropTypes.number.isRequired,
+  selectedCell: PropTypes.array.isRequired,
+  diamondStatus: PropTypes.object.isRequired,
+  storeSelectedCell: PropTypes.func.isRequired
+};
 
 export default Cell;

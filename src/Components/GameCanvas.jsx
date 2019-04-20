@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Cell from "../Components/Cell";
 import Hint from "../Components/Hint";
 import Modal from "../Components/Modal";
@@ -198,5 +199,11 @@ class GameCanvas extends Component {
     );
   }
 }
+
+GameCanvas.propTypes = {
+  noOfrow: PropTypes.number,
+  getScore: PropTypes.func.isRequired,
+  refreshGameBoard: PropTypes.func.isRequired
+};
 
 export default GameCanvas;

@@ -1,16 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const LeftSide = props => {
+  const { showScore, noOfrow } = props;
   return (
     <div className="col-md-4 left-side">
       <h3 className="text-center">
-        <i className="icon-star opacity-medium" />
-        <i className="icon-star opacity-medium" />
-        <i className="icon-star opacity-small" />
+        <i className="fa fa-star opacity-medium" />
+        <i className="fa fa-star opacity-medium" />
+        <i className="fa fa-star opacity-small" />
         &nbsp; Diamond Sweeper &nbsp;
-        <i className="icon-star opacity-small" />
-        <i className="icon-star opacity-medium" />
-        <i className="icon-star opacity-medium" />
+        <i className="fa fa-star opacity-small" />
+        <i className="fa fa-star opacity-medium" />
+        <i className="fa fa-star opacity-medium" />
       </h3>
       <div className="rules-container">
         <h4 className="rules-heading">Score Card</h4>
@@ -19,27 +21,21 @@ const LeftSide = props => {
             <label className="score-label">
               Diamonds Left{" "}
               <span className="badge badge-primary">
-                {props.showScore.diamondLeft}
+                {showScore.diamondLeft}
               </span>
             </label>
             <div>
-              <progress
-                value={props.showScore.diamondLeft}
-                max={props.noOfrow}
-                min={0}
-              />
+              <progress value={showScore.diamondLeft} max={noOfrow} min={0} />
             </div>
             <label>
               Your Score{" "}
-              <span className="badge badge-primary">
-                {props.showScore.yourScore}
-              </span>
+              <span className="badge badge-primary">{showScore.yourScore}</span>
             </label>
             <div>
               <progress
-                value={props.showScore.yourScore}
+                value={showScore.yourScore}
                 min={0}
-                max={Math.pow(props.noOfrow, 2)}
+                max={Math.pow(noOfrow, 2)}
               />
             </div>
           </div>
@@ -67,6 +63,11 @@ const LeftSide = props => {
       </footer>
     </div>
   );
+};
+
+LeftSide.propTypes = {
+  showScore: PropTypes.object.isRequired,
+  noOfrow: PropTypes.number.isRequired
 };
 
 export default LeftSide;

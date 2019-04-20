@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Modal = props => {
   if (!props.isOpen) {
@@ -30,6 +31,16 @@ const Modal = props => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  contentLabel: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
 };
 
 export default Modal;

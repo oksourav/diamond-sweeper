@@ -12,7 +12,8 @@ class App extends Component {
         diamondLeft: 0,
         yourScore: 0
       },
-      gameState: 0
+      gameState: 0,
+      row: 8
     };
     this.refreshGameBoard = this.refreshGameBoard.bind(this);
     this.getScore = this.getScore.bind(this);
@@ -54,7 +55,7 @@ class App extends Component {
             <LeftSide showScore={this.state.score} noOfrow={this.state.row} />
             {this.state.gameState === 1 ? (
               <GameCanvas
-                noOfrow={8}
+                noOfrow={this.state.row}
                 getScore={this.getScore}
                 refreshGameBoard={this.refreshGameBoard}
               />
