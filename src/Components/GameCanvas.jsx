@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Cell from "../Components/Cell";
+import Modal from "../Components/Modal";
+import award from "../images/award.svg";
 
 class GameCanvas extends Component {
   constructor(props) {
@@ -89,6 +91,59 @@ class GameCanvas extends Component {
             );
           })}
         </ul>
+        <Modal
+          isOpen={this.state.selectedDiamondCell.length === this.props.noOfrow}
+          onClose={this.onClose}
+        >
+          <div className="row">
+            <img
+              className="award"
+              src={award}
+              alt="Award"
+              width="128px"
+              height="128px"
+            />
+          </div>
+          <h2 className="text-center" style={{ margin: "10px 0" }}>
+            Congratulations! you have finished the game.
+          </h2>
+          <h3 className="text-center">
+            Your Score is :{" "}
+            <span className="badge badge-primary">
+              {this.getComputedScore().yourScore}
+            </span>
+          </h3>
+          <div className="social-media">
+            <h4 className="text-right">About me</h4>
+            <a href="https://souravdash.com/" className="fa fa-globe">
+              <span>souravdash.com/</span>
+            </a>
+            <a
+              href="https://twitter.com/souravdev2019"
+              className="fa fa-twitter"
+            >
+              <span>Twitter</span>
+            </a>
+            <a href="https://github.com/sourav52" className="fa fa-github">
+              <span>Github</span>
+            </a>
+            <a
+              href="https://www.quora.com/profile/Sourav-Dash-2"
+              className="fa fa-quora"
+            >
+              <span>Quora</span>
+            </a>
+            <a href="https://codepen.io/sourav_dash/" className="fa fa-codepen">
+              <span>CodePen</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/souravdash/"
+              className="fa fa-linkedin"
+            >
+              <span>Linkedin</span>
+            </a>
+          </div>
+        </Modal>
       </div>
     );
   }
