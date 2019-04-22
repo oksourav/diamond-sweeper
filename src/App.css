@@ -264,3 +264,17 @@ progress {
   top: 50%;
   transform: translateY(-50%);
 }
+
+@media only screen and (max-width: 761px) {
+  .game-rules {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .plus {
+    padding: 20px 0;
+  }
+}
