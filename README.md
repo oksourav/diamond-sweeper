@@ -9,8 +9,6 @@ Build Commands
     - To generate a production build: `npm run build`
     - Need Internet for loading Icon
 
-  <!-- Demo url: [http://xxx.xxx.com](http://xx.xx.com) -->
-
 # Game Rules
 
     - The game board has 64 squares. 8 diamonds hidden behind the board.
